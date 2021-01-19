@@ -1,0 +1,22 @@
+# Price per level of an item currency
+# Used to calculate enchant level costs or payouts
+price-per-level: 3
+
+# The item currency to use for most things
+# Use https://papermc.io/javadocs/paper/1.15/org/bukkit/Material.html
+currency: EMERALD
+
+# The item currency to use for smaller costs (Such as low-level payouts)
+# Use https://papermc.io/javadocs/paper/1.15/org/bukkit/Material.html
+low-currency: GOLD_INGOT
+
+# IN A FUTURE UPDATE: I will be moving disposable ad locked boxes into its own plugin which is where it better belongs
+# Lore for certain boxes to be treated a special way
+# It is reccomended to never change this as it can break other plugins that depend on this
+# Changing it can also break packages in-game the player may have
+boxes:
+  # Lore of a box that's disposable (Right click to unpack contents)
+  disposable-lore: Disposable Box
+
+  # Lore of a box that's locked (Requires currency money to open)
+  locked-lore: Locked! Needs money to unlock!

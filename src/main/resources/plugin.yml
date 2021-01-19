@@ -1,0 +1,8 @@
+name: DisenchantNPC
+version: 1.0
+main: com.popupmc.disenchantnpc.DisenchantNPC
+description: Disenchant NPC
+author: junebug12851
+api-version: 1.15
+
+depend: [Citizens]
