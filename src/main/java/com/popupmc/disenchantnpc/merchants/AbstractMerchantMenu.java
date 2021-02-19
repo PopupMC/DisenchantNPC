@@ -14,10 +14,10 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import java.util.*;
 
 // Base class for a custom trade menu
-abstract class AbstractMerchantMenu {
+public abstract class AbstractMerchantMenu {
     // Called automatically by AbstractMerchant to do the work
     // in creating and opening the menu
-    void openMenu(Player p, String name) {
+    public void openMenu(Player p, String name) {
         // Create fictional merchant
         Merchant merchant = Bukkit.createMerchant(name);
 
@@ -35,7 +35,7 @@ abstract class AbstractMerchantMenu {
     }
 
     // This handles all the usual stuff common to all menus
-    void generateTradesPre(Player p, List<MerchantRecipe> trades) {
+    public void generateTradesPre(Player p, List<MerchantRecipe> trades) {
 
         // Get the player and object player is holding, if a stack only get a single one
         // Don't offer trades for the whole stack
@@ -59,7 +59,7 @@ abstract class AbstractMerchantMenu {
     abstract void generateTrades(Player p, PlayerInventory inv, ItemStack item, List<MerchantRecipe> trades, Map<Enchantment, Integer> enchants);
 
     // Adds a trade option to the list of trades
-    void addTrade(ItemStack tradeItem1, ItemStack tradeItem2, ItemStack result, List<MerchantRecipe> trades) {
+    public void addTrade(ItemStack tradeItem1, ItemStack tradeItem2, ItemStack result, List<MerchantRecipe> trades) {
 
         // A single trade with absurdly high use count
         // We do this in attempt to make a trade unlimited if the player wishes
@@ -78,7 +78,7 @@ abstract class AbstractMerchantMenu {
     }
 
     // Creates a disposable box containing items
-    ItemStack createDisposableBox(String name, List<ItemStack> items) {
+    public ItemStack createDisposableBox(String name, List<ItemStack> items) {
         // Creates a black shulker box and gets it's contents which is a tad complicated
         ItemStack boxItem = new ItemStack(Material.BLACK_SHULKER_BOX);
         BlockStateMeta boxMeta = (BlockStateMeta) boxItem.getItemMeta();
@@ -107,7 +107,7 @@ abstract class AbstractMerchantMenu {
     }
 
     // Creates a locked box containing items
-    ItemStack createLockedBox(String name, List<ItemStack> items, int price) {
+    public ItemStack createLockedBox(String name, List<ItemStack> items, int price) {
         // Create shulker box and gets it's contents which is a tad complicated
         ItemStack boxItem = new ItemStack(Material.BLACK_SHULKER_BOX);
         BlockStateMeta boxMeta = (BlockStateMeta) boxItem.getItemMeta();
@@ -141,28 +141,28 @@ abstract class AbstractMerchantMenu {
     // This converts something like fire_aspect, 5
     // to "Fire Aspect 5"
     // At this point I'm not going to worry about roman numerals
-    String enchantToTitle(Enchantment enchant, int level) {
+    public String enchantToTitle(Enchantment enchant, int level) {
         String name = enchant.getKey().getKey();
         name = name.replace('_', ' ');
         return TextUtils.convertToTitleCaseSplitting(name) + " " + level;
     }
 
     // This returns however many physical coins you want
-    ItemStack getCostStack(int amt) {
+    public ItemStack getCostStack(int amt) {
         ItemStack costStack = DisenchantNPCConfig.currency.asOne();
         costStack.setAmount(amt);
         return costStack;
     }
 
     // Also returns physical coins, just lower currency
-    ItemStack getLowerCostStack(int amt) {
+    public ItemStack getLowerCostStack(int amt) {
         ItemStack costStack = DisenchantNPCConfig.lowCurrency.asOne();
         costStack.setAmount(amt);
         return costStack;
     }
 
     // This returns coins but auto calculated based on level
-    ItemStack getCostStackFromLevel(int level) {
+    public ItemStack getCostStackFromLevel(int level) {
         // Generate cost as a stack of currency
         int cost = level * DisenchantNPCConfig.pricePerLevel;
         return getCostStack(cost);
@@ -175,20 +175,20 @@ abstract class AbstractMerchantMenu {
      */
 
     // This gets all the enchants from a book
-    Map<Enchantment,Integer> getEnchantsFromBook(ItemStack book) {
+    public Map<Enchantment,Integer> getEnchantsFromBook(ItemStack book) {
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta)book.getItemMeta();
         return meta.getStoredEnchants();
     }
 
     // Adds enchants to book
-    void addEnchantToBook(ItemStack book, Enchantment enchant, int level) {
+    public void addEnchantToBook(ItemStack book, Enchantment enchant, int level) {
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta)book.getItemMeta();
         meta.addStoredEnchant(enchant, level, true);
         book.setItemMeta(meta);
     }
 
     // Remove enchant from inside book
-    void remEnchantFromBook(ItemStack book, Enchantment enchant) {
+    public void remEnchantFromBook(ItemStack book, Enchantment enchant) {
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta)book.getItemMeta();
         meta.removeStoredEnchant(enchant);
         book.setItemMeta(meta);
@@ -199,17 +199,17 @@ abstract class AbstractMerchantMenu {
      */
 
     // Enchants from non-books
-    Map<Enchantment,Integer> getEnchantsFromNonBook(ItemStack item) {
+    public Map<Enchantment,Integer> getEnchantsFromNonBook(ItemStack item) {
         return item.getEnchantments();
     }
 
     // Enchant to non-book
-    void addEnchantToNonBook(ItemStack item, Enchantment enchant, int level) {
+    public void addEnchantToNonBook(ItemStack item, Enchantment enchant, int level) {
         item.addUnsafeEnchantment(enchant, level);
     }
 
     // Remove enchant from non-book
-    void remEnchantFromNonBook(ItemStack item, Enchantment enchant) {
+    public void remEnchantFromNonBook(ItemStack item, Enchantment enchant) {
         item.removeEnchantment(enchant);
     }
 
@@ -219,7 +219,7 @@ abstract class AbstractMerchantMenu {
      */
 
     // Get enchant no matter item
-    Map<Enchantment,Integer> getEnchants(ItemStack item) {
+    public Map<Enchantment,Integer> getEnchants(ItemStack item) {
         if(item.getType() == Material.ENCHANTED_BOOK)
             return getEnchantsFromBook(item);
 
@@ -227,7 +227,7 @@ abstract class AbstractMerchantMenu {
     }
 
     // Add enchant no matter item
-    void addEnchant(ItemStack item, Enchantment enchant, int level) {
+    public void addEnchant(ItemStack item, Enchantment enchant, int level) {
         if(item.getType() == Material.ENCHANTED_BOOK) {
             addEnchantToBook(item, enchant, level);
             return;
@@ -237,7 +237,7 @@ abstract class AbstractMerchantMenu {
     }
 
     // Remove enchant no matter item
-    void remEnchant(ItemStack item, Enchantment enchant) {
+    public void remEnchant(ItemStack item, Enchantment enchant) {
         if(item.getType() == Material.ENCHANTED_BOOK) {
             remEnchantFromBook(item, enchant);
             return;
@@ -248,7 +248,7 @@ abstract class AbstractMerchantMenu {
 
     // This calculates an enchant book price based on configuration
     // by multiplying the price per level by all the enchants in the book
-    int getPriceFromBook(ItemStack book) {
+    public int getPriceFromBook(ItemStack book) {
         Map<Enchantment, Integer> enchants = getEnchantsFromBook(book);
 
         int ret = 0;
@@ -260,7 +260,7 @@ abstract class AbstractMerchantMenu {
     }
 
     // Applies all enchants from a book to an item
-    void applyAllEnchantsFromBook(ItemStack book, ItemStack item) {
+    public void applyAllEnchantsFromBook(ItemStack book, ItemStack item) {
         Map<Enchantment, Integer> enchants = getEnchantsFromBook(book);
 
         for (Map.Entry<Enchantment, Integer> enchant : enchants.entrySet()) {

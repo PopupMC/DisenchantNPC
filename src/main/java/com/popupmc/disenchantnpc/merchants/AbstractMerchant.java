@@ -1,5 +1,6 @@
 package com.popupmc.disenchantnpc.merchants;
 
+import com.popupmc.disenchantnpc.DisenchantNPC;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.trait.Trait;
 import org.bukkit.entity.Player;

@@ -3,6 +3,13 @@ version: 1.0
 main: com.popupmc.disenchantnpc.DisenchantNPC
 description: Disenchant NPC
 author: junebug12851
-api-version: 1.15
+api-version: 1.16
 
 depend: [Citizens]
+
+commands:
+  disenchanter:
+    permission: disenchanter.use
+    permission-message: You don't have permission to perform this action
+    description: Force Disenchanter Window
+    usage: /disenchanter <window-type>

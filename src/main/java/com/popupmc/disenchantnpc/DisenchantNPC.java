@@ -23,6 +23,7 @@ public class DisenchantNPC extends JavaPlugin {
         // Register Box Place Events to make them work as expected
         Bukkit.getPluginManager().registerEvents(new OnDisposableBoxPlace(), this);
         Bukkit.getPluginManager().registerEvents(new OnLockedBoxPlace(), this);
+        Objects.requireNonNull(this.getCommand("disenchanter")).setExecutor(new OnCommand());
 
         // Setup Citizens
         // This can only work on server start unfortunately meaning updates can't be applied while server is running
