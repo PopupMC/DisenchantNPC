@@ -15,7 +15,7 @@ public class DisenchantNPCConfig {
         // Read config.yml in resources for better explanations
 
         // Price per enchant level to calculate pricing or payouts
-        pricePerLevel = config.getInt("price-per-level", 3);
+        pricePerLevel = 4; //config.getInt("price-per-level", 5);
 
         // Currency
         currency = new ItemStack(Material.valueOf(config.getString("currency", "EMERALD")));

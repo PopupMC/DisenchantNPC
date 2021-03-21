@@ -53,10 +53,25 @@ public class DisenchantNPC extends JavaPlugin {
         }
 
         // Register traits with Citizens
-        CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(Disenchanter.class).withName(Disenchanter.traitName));
-        CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(Enchanter.class).withName(Enchanter.traitName));
-        CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(EnchantLeveler.class).withName(EnchantLeveler.traitName));
-        CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(EnchantDeleveler.class).withName(EnchantDeleveler.traitName));
+        try {
+            CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(Disenchanter.class).withName(Disenchanter.traitName));
+        } catch (Exception ignored) {}
+
+        try {
+            CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(Enchanter.class).withName(Enchanter.traitName));
+        } catch (Exception ignored) {}
+
+        try {
+            CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(EnchantLeveler.class).withName(EnchantLeveler.traitName));
+        } catch (Exception ignored) {}
+
+        try {
+            CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(EnchantDeleveler.class).withName(EnchantDeleveler.traitName));
+        } catch (Exception ignored) {}
+
+        try {
+            CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(Freshener.class).withName(Freshener.traitName));
+        } catch (Exception ignored) {}
 
         return true;
     }

@@ -1,6 +1,6 @@
 # Price per level of an item currency
 # Used to calculate enchant level costs or payouts
-price-per-level: 3
+price-per-level: 5
 
 # The item currency to use for most things
 # Use https://papermc.io/javadocs/paper/1.15/org/bukkit/Material.html
